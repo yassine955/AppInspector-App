@@ -1,14 +1,17 @@
 import { Navbar } from "flowbite-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 
 export const NavbarComponent = () => {
+  const { push } = useRouter();
   return (
     <Fragment>
       <div className="bg-white pb-2">
         <img
-          className="h-auto max-w-sm pt-2 pl-4 "
-          src="logo.png"
+          onClick={() => push("/")}
+          className="h-auto max-w-sm pt-2 pl-4 hover:cursor-wait"
+          src="/logo.png"
           alt="image description"
         />
       </div>
@@ -18,7 +21,7 @@ export const NavbarComponent = () => {
             Home
           </span>
         </Link>
-        <Link href="/">
+        <Link href="/meer">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Meer weten?
           </span>

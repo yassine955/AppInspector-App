@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Fragment>
       <NavbarComponent />
-      <BodyComp>
+      <BodyComp results={false}>
         <SearchEngineComponent />
       </BodyComp>
     </Fragment>
