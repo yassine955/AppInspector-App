@@ -3,16 +3,10 @@ import { LoadingComp } from "@/components/Loading";
 import { NavbarComponent } from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
+import { VulnerableApp } from "./results";
 
 export default function SingleResult() {
-  const [dataRow, setDataRow] = useState<{
-    icoon: string;
-    id: number;
-    naam: string;
-    platform: string;
-    resultaat: string;
-    versie: string;
-  }>();
+  const [dataRow, setDataRow] = useState<VulnerableApp>();
   const {
     push,
     query: { id },
@@ -56,8 +50,8 @@ export default function SingleResult() {
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
               />
               <article className="pl-4 text-xl font-bold text-blue-950">
-                <h1>{dataRow?.naam}</h1>
-                <h1>{`Versienummer: ${dataRow?.versie}`}</h1>
+                <h1>{dataRow?.name}</h1>
+                <h1>{`Versienummer: ${dataRow?.version}`}</h1>
               </article>
             </div>
 

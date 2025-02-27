@@ -2,9 +2,9 @@ import { Pool } from "pg";
 
 const client = new Pool({
   user: "postgres",
-  host: "localhost",
-  database: "AppInspectorDemo",
-  password: "1234",
+  host: process.env.NEXT_PUBLIC_HOST,
+  database: process.env.NEXT_PUBLIC_DB,
+  password: process.env.NEXT_PUBLIC_PASS,
   port: 5432, // default PostgreSQL port
 });
 

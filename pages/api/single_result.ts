@@ -8,10 +8,10 @@ export default async function handler(
   try {
     const { id } = req.query;
 
-    let query = "SELECT * FROM results";
+    let query = `SELECT * FROM poc.app`;
 
     if (id) {
-      query = `SELECT * FROM results WHERE id = ${id}`; // Case-insensitive search with partial match
+      query = `SELECT * FROM poc.app WHERE id = ${id}`; // Case-insensitive search with partial match
     }
 
     const result = await client.query(query);

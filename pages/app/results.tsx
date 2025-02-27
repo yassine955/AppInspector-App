@@ -4,6 +4,30 @@ import { NavbarComponent } from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 
+export interface VulnerableApp {
+  vulnerable: boolean;
+  id: string;
+  hash: string;
+  name: string;
+  package_name: string;
+  platform: string;
+  publisher: string | null;
+  social_media_scan: string | null;
+  version: string;
+  permissions_friendly_names: string | null;
+  risk: number;
+  num_tests: number | null;
+  last_update: string | null;
+  total_score: number | null;
+  system_risk: number | null;
+  privacy_risk: number | null;
+  reliability_risk: number | null;
+  risk_description: string | null;
+  financial_risk: number | null;
+  icon: string | null;
+  git_repo_hash: string | null;
+}
+
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
@@ -14,16 +38,7 @@ export default function Home() {
     push,
     query: { name },
   } = useRouter();
-  const [rows, setRows] = useState<
-    {
-      icoon: string;
-      id: number;
-      naam: string;
-      platform: string;
-      resultaat: string;
-      versie: string;
-    }[]
-  >([]);
+  const [rows, setRows] = useState<VulnerableApp[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +46,9 @@ export default function Home() {
       if (name) {
         try {
           const response = await fetch(`/api/results?naam=${name}`);
-          const data = await response.json();
+          const data = (await response.json()) as VulnerableApp[];
+
+          console.log({ data });
 
           if (data.length > 0) {
             setRows(data);
@@ -114,9 +131,9 @@ export default function Home() {
                         scope="row"
                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        {row?.naam}
+                        {row?.name}
                       </th>
-                      <td className="px-6 py-4"> {row?.versie}</td>
+                      <td className="px-6 py-4"> {row?.version}</td>
                       <td className="px-6 py-4"> {row?.platform}</td>
                       <td className="px-6 py-4">
                         <img className="w-8" src="/angry.svg" />

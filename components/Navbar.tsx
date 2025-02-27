@@ -10,7 +10,7 @@ export const NavbarComponent = () => {
       <div className="bg-white pb-2">
         <img
           onClick={() => push("/")}
-          className="h-auto max-w-sm pt-2 pl-4 hover:cursor-wait"
+          className="h-auto max-w-sm pt-2 pl-4 hover:cursor-pointer"
           src="/logo.png"
           alt="image description"
         />
