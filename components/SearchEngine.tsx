@@ -63,7 +63,7 @@ export const SearchEngineComponent = () => {
   return (
     <Fragment>
       <div>
-        <div className="flex" style={{ alignItems: "start" }}>
+        <div className="sm:flex" style={{ alignItems: "start" }}>
           <input
             value={inputValue}
             type="text"
@@ -73,7 +73,7 @@ export const SearchEngineComponent = () => {
               width: "22rem",
             }}
             placeholder="Type de naam van de app"
-            className="mr-2 shadow-lg bg-gray-50 border border-gray-300 text-blue-950 text-sm rounded-lg focus:ring-blue-200 focus:border-blue-200 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className=" placeholder-darkBlueText sm:mr-2 shadow-lg bg-gray-50 border border-gray-300 font-bold text-darkBlueText text-sm rounded-lg focus:ring-blue-200 focus:border-blue-200 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
 
           <Button
@@ -83,7 +83,7 @@ export const SearchEngineComponent = () => {
               handleSearch();
             }}
             disabled={loading ? true : false}
-            className="text-white bg-customBlue hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="max-sm:w-full max-sm:mt-4 max-sm:justify-self-center text-white bg-customBlue hover:bg-customBlue focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm focus:outline-none "
           >
             {loading ? (
               <svg
