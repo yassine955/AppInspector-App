@@ -29,6 +29,23 @@ export interface VulnerableApp {
 }
 
 export default function Home() {
+  // let happyOpacity = 0;
+  // let middleOpacity = 0;
+  // let angryOpacity = 0;
+  // if (riskValue < 16) {
+  //   happyOpacity = 100;
+  //   middleOpacity = 20;
+  //   angryOpacity = 5;
+  // } else if (riskValue >= 16 && riskValue <= 35) {
+  //   happyOpacity = 20;
+  //   middleOpacity = 100;
+  //   angryOpacity = 20;
+  // } else if (riskValue > 35 && riskValue <= 50) {
+  //   happyOpacity = 5;
+  //   middleOpacity = 20;
+  //   angryOpacity = 100;
+  // }
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     state: false,
@@ -116,57 +133,92 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody className="text-blue-950">
-                  {rows.map((row) => (
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                      <th
-                        scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        <img
-                          className="w-6"
-                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
-                        />
-                      </th>
-                      <th
-                        scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        {row?.name}
-                      </th>
-                      <td className="px-6 py-4"> {row?.version}</td>
-                      <td className="px-6 py-4"> {row?.platform}</td>
-                      <td className="px-6 py-4">
-                        <img className="w-8" src="/angry.svg" />
-                      </td>
-                      <td className="px-6 py-4">
-                        <svg
-                          onClick={() => {
-                            push({
-                              pathname: `/app/result`,
-                              query: {
-                                id: row?.id,
-                              },
-                            });
-                          }}
-                          className="hover:cursor-pointer w-6 h-6 text-teal-500 dark:text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24"
+                  {rows.map((row) => {
+                    let icon = "";
+
+                    const risks = [
+                      row?.financial_risk,
+                      row?.privacy_risk,
+                      row?.reliability_risk,
+                      row?.system_risk,
+                    ];
+
+                    const checkRiskRange = (
+                      risk: number,
+                      min: number,
+                      max: number
+                    ) => risk > min && risk <= max;
+
+                    if (risks.some((risk) => checkRiskRange(risk!, 35, 50))) {
+                      icon = "/angry.svg";
+                    } else if (
+                      risks.some((risk) => checkRiskRange(risk!, 16, 35))
+                    ) {
+                      icon = "/middle.svg";
+                    } else if (risks.some((risk) => risk! < 16)) {
+                      icon = "/happy.svg";
+                    }
+
+                    return (
+                      <tr className="font-medium bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 text-darkBlueText">
+                        <th
+                          scope="row"
+                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M10 3v4a1 1 0 0 1-1 1H5m8 7.5 2.5 2.5M19 4v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Zm-5 9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+                          <img
+                            className="w-6"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
                           />
-                        </svg>
-                      </td>
-                    </tr>
-                  ))}
+                        </th>
+                        <th
+                          scope="row"
+                          className="px-6 py-4 font-medium whitespace-nowrap dark:text-white"
+                        >
+                          {row?.name}
+                        </th>
+                        <td className="px-6 py-4"> {row?.version}</td>
+                        <td className="px-6 py-4"> {row?.platform}</td>
+                        <td className="px-6 py-4">
+                          <img className="w-8" src={icon} />
+                        </td>
+                        <td className="px-6 py-4">
+                          <svg
+                            onClick={() => {
+                              push({
+                                pathname: `/app/result`,
+                                query: {
+                                  id: row?.id,
+                                },
+                              });
+                            }}
+                            width="29"
+                            height="31"
+                            viewBox="0 0 29 31"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="hover:cursor-pointer w-6 h-6 text-teal-500 dark:text-white"
+                          >
+                            <path
+                              d="M7.59998 2.10004L2.29999 7.40002H7.59998V2.10004Z"
+                              fill="#0096C9"
+                            />
+                            <path
+                              d="M22.2 22.4L23.7 20.9L28.9 26.1L27.4 27.6L22.2 22.4Z"
+                              fill="#0096C9"
+                            />
+                            <path
+                              d="M16.5 21.9C15.2 21.9 13.9 21.5 12.9 20.8H4.5V19.7H11.4C10.6 18.8 10 17.8 9.70001 16.6H4.40002V15.5H9.5V15.1C9.5 14.1 9.69998 13.2 10.1 12.4H4.40002V11.3H10.7C12 9.50002 14 8.30002 16.3 8.30002C18.6 8.30002 20.8 9.60002 22 11.4V0.900024H8.5V8.70004H0.700012V30.5H22V18.9C20.8 20.7 18.7 22 16.3 22L16.5 21.9Z"
+                              fill="#0096C9"
+                            />
+                            <path
+                              d="M12.4 18.9001C13.5 20.0001 14.9 20.7001 16.5 20.7001C19.7 20.7001 22.2 18.1001 22.2 15.0001C22.2 11.9001 19.6 9.30005 16.5 9.30005C13.4 9.30005 12.1 10.8 11.2 12.8H17.2V14.9001H10.8C10.8 15.7001 10.9 16.3001 11.1 16.9001H17.2V19.0001H12.3L12.4 18.9001Z"
+                              fill="#0096C9"
+                            />
+                          </svg>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             )}
