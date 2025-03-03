@@ -10,33 +10,28 @@ export const NavbarComponent = () => {
       <div className="bg-white pb-2">
         <img
           onClick={() => push("/")}
-          className="h-auto max-w-sm pt-2 pl-4 hover:cursor-pointer"
-          src="/logo.png"
+          className="h-auto max-sm:w-full max-md:w-1/2 max-lg:w-1/2  max-w-sm pt-2 px-4 hover:cursor-pointer"
+          src="/logo-app.svg"
           alt="image description"
         />
       </div>
       <Navbar fluid className="bg-customBlue text-white px-4">
-        <Link href="/">
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+        <Navbar.Toggle className=" text-white hover:bg-transparent" />
+        <Navbar.Collapse>
+          <Navbar.Link
+            className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-gray-50 hover:bg-hoverBlue border-none"
+            href="/"
+          >
             Home
-          </span>
-        </Link>
-        <Link href="/meer">
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Meer weten?
-          </span>
-        </Link>
+          </Navbar.Link>
 
-        {/* <Navbar.Toggle /> */}
-        {/* <Navbar.Collapse>
-      <Navbar.Link href="/navbars" active>
-        Home
-      </Navbar.Link>
-      <Navbar.Link href="/navbars">About</Navbar.Link>
-      <Navbar.Link href="/navbars">Services</Navbar.Link>
-      <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-      <Navbar.Link href="/navbars">Contact</Navbar.Link>
-    </Navbar.Collapse> */}
+          <Navbar.Link
+            className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-gray-50 hover:bg-hoverBlue border-none"
+            href="/meer"
+          >
+            Meer weten?
+          </Navbar.Link>
+        </Navbar.Collapse>
       </Navbar>
     </Fragment>
   );
