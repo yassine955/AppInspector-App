@@ -6,11 +6,11 @@ import { Fragment, useEffect, useState } from "react";
 
 const Article = () => {
   return (
-    <article className="format lg:format-lg text-blue-950">
-      <h3 className="text-blue-950">
+    <article className="format lg:format-lg text-darkBlueText">
+      <h3 className="text-darkBlueText">
         Over ons: Wij geloven in betere digitale veiligheid
       </h3>
-      <p className="lead text-blue-950">
+      <p className="text-darkBlueText">
         Wij zijn een groep van ervaren onderzoekers die zich richten op het
         verbeteren van de digitale veiligheid van apps. Met onze kennis en
         ervaring helpen we organisaties en gebruikers te beschermen.
@@ -28,11 +28,13 @@ const Article = () => {
         met dezelfde doelen en bewustzijn creëren over de beveiliging van apps.
       </p>
 
-      <h3>Contact</h3>
+      <h3 className="text-darkBlueText">Contact</h3>
       <p>
         Heeft u vragen of opmerkingen? Stuur een e-mail naar{" "}
-        <a href="mailto:info@appinspector.nl">info@appinspector.nl</a>. Wij
-        helpen u graag verder.
+        <a className="text-darkBlueText" href="mailto:info@appinspector.nl">
+          info@appinspector.nl
+        </a>
+        . Wij helpen u graag verder.
       </p>
     </article>
   );
