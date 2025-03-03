@@ -6,14 +6,19 @@ export default function Document() {
       lang="en"
       style={{
         position: "relative",
-        backgroundImage: 'url("/Network-No-Background (1).png")',
+        backgroundImage:
+          "linear-gradient(rgb(0 150 201 / 21%), rgb(0 0 0 / 0%)), url(/background-network.svg)",
+
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        minHeight: "100vh", // Ensure the div takes up the full height of the screen
+        minHeight: "100vh", // Ensure the div takes up the full height of the screen,
+        width: "100%",
       }}
       className="bg-backgroundBlue"
     >
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
       <Head />
       <body className="antialiased">
         <Main />
