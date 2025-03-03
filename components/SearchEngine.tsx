@@ -62,7 +62,12 @@ export const SearchEngineComponent = () => {
 
   return (
     <Fragment>
-      <div>
+      <div
+        style={{
+          justifyContent: "center",
+          marginTop: "10%",
+        }}
+      >
         <div className="sm:flex" style={{ alignItems: "start" }}>
           <input
             value={inputValue}
