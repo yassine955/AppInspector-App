@@ -85,25 +85,29 @@ export default function Home() {
 
   return (
     <Fragment>
-      <NavbarComponent />
       <BodyComp results>
         {loading ? (
-          <LoadingComp />
+          <div className="flex justify-center mt-5">
+            <LoadingComp />
+          </div>
         ) : (
           <div
             className="relative overflow-x-auto"
             style={{
               height: "60vh",
+              justifyItems: "center",
             }}
           >
             {loading ? (
-              <LoadingComp />
+              <div className="flex justify-center mt-5">
+                <LoadingComp />
+              </div>
             ) : (
-              <table className="max-sm:w-screen max-md:w-screen max-lg:w-screen max-xl:w-screen text-sm text-left bg-backgroundBlue">
+              <table className="max-sm:w-screen max-md:w-screen max-lg:w-5/6 max-xl:w-4/5 w-6/12 text-sm text-left bg-backgroundBlue ">
                 <thead
-                  className="text-xs text-cyan-600  sticky top-0 bg-backgroundBlue"
+                  className="text-xs text-cyan-600  sticky top-0 bg-white "
                   style={{
-                    zIndex: 1, // Ensure it stays above the table rows
+                    zIndex: 1,
                   }}
                 >
                   <tr>
