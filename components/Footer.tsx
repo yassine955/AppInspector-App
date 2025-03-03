@@ -1,10 +1,10 @@
 export const Footer = () => {
   return (
-    <div className="text-blue-900 px-10" style={{ flex: "0 1 40px" }}>
+    <div className="text-darkBlueText px-10" style={{ flex: "0 1 40px" }}>
       <p>
         <b>Disclaimer:</b>
       </p>
-      <p>
+      <p className="text-justify max-sm:text-xs max-md:text-sm max-lg:text-base xl:text-base">
         De informatie op deze website is uitsluitend bedoeld voor algemene
         informatieve doeleinden. Hoewel wij ons inspannen om de informatie
         actueel en correct te houden, doen wij geen enkele uitspraak of geven
