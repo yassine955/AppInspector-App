@@ -13,6 +13,8 @@ export default {
       colors: {
         customBlue: "#0096c9", // Custom color added
         backgroundBlue: "#d9e6ee",
+        darkBlueText: "#00338d",
+        hoverBlue: "#0096c9d6",
       },
     },
   },
