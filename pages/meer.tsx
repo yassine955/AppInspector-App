@@ -1,42 +1,43 @@
 import { BodyComp } from "@/components/Body";
-import { LoadingComp } from "@/components/Loading";
-import { NavbarComponent } from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 
 const Article = () => {
   return (
-    <article className="format lg:format-lg text-darkBlueText">
-      <h3 className="text-darkBlueText">
-        Over ons: Wij geloven in betere digitale veiligheid
-      </h3>
-      <p className="text-darkBlueText">
-        Wij zijn een groep van ervaren onderzoekers die zich richten op het
-        verbeteren van de digitale veiligheid van apps. Met onze kennis en
-        ervaring helpen we organisaties en gebruikers te beschermen.
-      </p>
-      <p>
-        Wij geloven dat heldere informatie over programma code (apps) helpt de
-        wereld veiliger te maken. Met onze kennis, ervaring en hulpmiddelen
-        willen we deze informatie maken en delen.
-      </p>
-      <p>
-        Het is onze missie om een betrouwbare bron te zijn voor advies over de
-        veiligheid van apps. We geven gebruikers de kennis en middelen die ze
-        nodig hebben om goede keuzes te maken die hun privacy en digitale
-        veiligheid beschermen. Ook willen we een gemeenschap opbouwen van mensen
-        met dezelfde doelen en bewustzijn creëren over de beveiliging van apps.
-      </p>
+    <div className="flex justify-center py-10">
+      <article className="format lg:format-lg text-darkBlueText">
+        <h3 className="text-darkBlueText">
+          Over ons: Wij geloven in betere digitale veiligheid
+        </h3>
+        <p className="text-darkBlueText">
+          Wij zijn een groep van ervaren onderzoekers die zich richten op het
+          verbeteren van de digitale veiligheid van apps. Met onze kennis en
+          ervaring helpen we organisaties en gebruikers te beschermen.
+        </p>
+        <p>
+          Wij geloven dat heldere informatie over programma code (apps) helpt de
+          wereld veiliger te maken. Met onze kennis, ervaring en hulpmiddelen
+          willen we deze informatie maken en delen.
+        </p>
+        <p>
+          Het is onze missie om een betrouwbare bron te zijn voor advies over de
+          veiligheid van apps. We geven gebruikers de kennis en middelen die ze
+          nodig hebben om goede keuzes te maken die hun privacy en digitale
+          veiligheid beschermen. Ook willen we een gemeenschap opbouwen van
+          mensen met dezelfde doelen en bewustzijn creëren over de beveiliging
+          van apps.
+        </p>
 
-      <h3 className="text-darkBlueText">Contact</h3>
-      <p>
-        Heeft u vragen of opmerkingen? Stuur een e-mail naar{" "}
-        <a className="text-darkBlueText" href="mailto:info@appinspector.nl">
-          info@appinspector.nl
-        </a>
-        . Wij helpen u graag verder.
-      </p>
-    </article>
+        <h3 className="text-darkBlueText">Contact</h3>
+        <p>
+          Heeft u vragen of opmerkingen? Stuur een e-mail naar{" "}
+          <a className="text-darkBlueText" href="mailto:info@appinspector.nl">
+            info@appinspector.nl
+          </a>
+          . Wij helpen u graag verder.
+        </p>
+      </article>
+    </div>
   );
 };
 
@@ -56,7 +57,6 @@ export default function AboutUs() {
 
   return (
     <Fragment>
-      <NavbarComponent />
       <BodyComp results>
         <Article />
       </BodyComp>
