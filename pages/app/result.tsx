@@ -33,11 +33,11 @@ const RiskComponent = ({
 
   return (
     <div className="flex mb-5" style={{ alignItems: "center" }}>
-      <article className="pl-4 font-bold text-blue-950 w-2/3">
+      <article className="pl-4 font-bold text-blue-950 w-6/12">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
       </article>
-      <div className="flex w-1/3">
+      <div className="flex w-6/12 justify-center">
         <img
           className="mr-2"
           style={{ opacity: `${happyOpacity}%` }}
@@ -88,43 +88,46 @@ export default function SingleResult() {
 
   return (
     <Fragment>
-      <NavbarComponent />
       <BodyComp results>
         {loading ? (
-          <LoadingComp />
+          <div className="flex justify-center mt-5">
+            <LoadingComp />
+          </div>
         ) : (
-          <div>
-            <div className="mb-7" style={{ display: "flex" }}>
-              <img
-                className="w-12"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
-              />
-              <article className="pl-4 text-xl font-bold text-blue-950">
-                <h1>{dataRow?.name}</h1>
-                <h1>{`Versienummer: ${dataRow?.version}`}</h1>
-              </article>
-            </div>
+          <div className="w-full flex justify-center py-8">
+            <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
+              <div className="mb-7 " style={{ display: "flex" }}>
+                <img
+                  className="w-12"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
+                />
+                <article className="pl-4 text-xl font-bold text-blue-950">
+                  <h1>{dataRow?.name}</h1>
+                  <h1>{`Versienummer: ${dataRow?.version}`}</h1>
+                </article>
+              </div>
 
-            <RiskComponent
-              riskValue={dataRow?.privacy_risk!}
-              title="Privacy"
-              description="Een app die bijvoorbeeld je email deelt - krijgt een hogere score voor privacy."
-            />
-            <RiskComponent
-              riskValue={dataRow?.system_risk!}
-              title="Systeem"
-              description="Een app die het systeem kan laten crashen - krijgt een hoge(re) score voor Systeem."
-            />
-            <RiskComponent
-              riskValue={dataRow?.reliability_risk!}
-              title="Betrouwbaarheid"
-              description="Een app die het systeem kan laten crashen - krijgt een hoge(re) score voor Betrouwbaarheid."
-            />
-            <RiskComponent
-              riskValue={dataRow?.financial_risk!}
-              title="Financiën"
-              description="Een app die bankgegevens niet goed beveiligt - krijgt een hoge(re) score voor Financiën."
-            />
+              <RiskComponent
+                riskValue={dataRow?.privacy_risk!}
+                title="Privacy"
+                description="Een app die bijvoorbeeld je email deelt - krijgt een hogere score voor privacy."
+              />
+              <RiskComponent
+                riskValue={dataRow?.system_risk!}
+                title="Systeem"
+                description="Een app die het systeem kan laten crashen - krijgt een hoge(re) score voor Systeem."
+              />
+              <RiskComponent
+                riskValue={dataRow?.reliability_risk!}
+                title="Betrouwbaarheid"
+                description="Een app die het systeem kan laten crashen - krijgt een hoge(re) score voor Betrouwbaarheid."
+              />
+              <RiskComponent
+                riskValue={dataRow?.financial_risk!}
+                title="Financiën"
+                description="Een app die bankgegevens niet goed beveiligt - krijgt een hoge(re) score voor Financiën."
+              />
+            </div>
           </div>
         )}
       </BodyComp>
