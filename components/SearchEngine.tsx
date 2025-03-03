@@ -69,7 +69,7 @@ export const SearchEngineComponent = () => {
           justifyItems: "center !important",
         }}
       >
-        <div className="sm:flex" style={{ alignItems: "start" }}>
+        <div className="sm:flex justify-center" style={{}}>
           <input
             value={inputValue}
             type="text"
@@ -120,10 +120,13 @@ export const SearchEngineComponent = () => {
         {error?.state ? (
           <div className="mt-5">
             <div
-              className="transition-opacity duration-1000 p-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 "
-              role="contentinfo"
+              style={{
+                justifySelf: "center !important",
+              }}
+              className="transition-opacity duration-1000 p-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 self-center"
+              role="alert"
             >
-              <span className="font-medium">Helaas!</span> {error?.msg}
+              <span className="font-medium">Let op!</span> {error?.msg}
             </div>
           </div>
         ) : null}
