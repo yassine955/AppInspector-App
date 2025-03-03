@@ -5,11 +5,8 @@ import { SearchEngineComponent } from "@/components/SearchEngine";
 
 export default function Home() {
   return (
-    <Fragment>
-      <NavbarComponent />
-      <BodyComp results={false}>
-        <SearchEngineComponent />
-      </BodyComp>
-    </Fragment>
+    <BodyComp results={false}>
+      <SearchEngineComponent />
+    </BodyComp>
   );
 }

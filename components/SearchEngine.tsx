@@ -120,7 +120,7 @@ export const SearchEngineComponent = () => {
         {error?.state ? (
           <div className="mt-5">
             <div
-              className="transition-opacity duration-1000 p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 "
+              className="transition-opacity duration-1000 p-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 "
               role="contentinfo"
             >
               <span className="font-medium">Helaas!</span> {error?.msg}

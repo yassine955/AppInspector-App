@@ -99,14 +99,9 @@ export default function Home() {
             {loading ? (
               <LoadingComp />
             ) : (
-              <table
-                style={{
-                  width: "60rem",
-                }}
-                className="text-sm text-left text-gray-500 dark:text-gray-400"
-              >
+              <table className="max-sm:w-screen max-md:w-screen max-lg:w-screen max-xl:w-screen text-sm text-left bg-backgroundBlue">
                 <thead
-                  className="text-xs text-cyan-600 dark:bg-gray-700 dark:text-gray-400 sticky top-0 bg-white"
+                  className="text-xs text-cyan-600  sticky top-0 bg-backgroundBlue"
                   style={{
                     zIndex: 1, // Ensure it stays above the table rows
                   }}
@@ -132,7 +127,7 @@ export default function Home() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="text-blue-950">
+                <tbody className="text-blue-950 bg-backgroundBlue">
                   {rows.map((row) => {
                     let icon = "";
 
@@ -160,7 +155,7 @@ export default function Home() {
                     }
 
                     return (
-                      <tr className="font-medium bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 text-darkBlueText">
+                      <tr className="font-medium bg-backgroundBlue border-b  text-darkBlueText">
                         <th
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
