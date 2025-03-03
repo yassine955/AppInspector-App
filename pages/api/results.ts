@@ -32,10 +32,12 @@ export default async function handler(
   try {
     const { naam } = req.query;
 
-    let query = `SELECT * FROM poc.app`;
+    // let query = `SELECT * FROM poc.app`;
+    let query = `SELECT * FROM vulnerabilities`;
 
     if (naam) {
-      query = `SELECT * FROM poc.app WHERE name ILIKE '%${naam}%'`; // Case-insensitive search with partial match
+      // query = `SELECT * FROM poc.app WHERE name ILIKE '%${naam}%'`; // Case-insensitive search with partial match
+      query = `SELECT * FROM vulnerabilities WHERE name ILIKE '%${naam}%'`; // Case-insensitive search with partial match
     }
 
     const result = await client.query(query);
