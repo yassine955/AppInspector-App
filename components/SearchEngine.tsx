@@ -69,7 +69,7 @@ export const SearchEngineComponent = () => {
           justifyItems: "center !important",
         }}
       >
-        <div className="sm:flex justify-center" style={{}}>
+        <div className="sm:flex justify-center self-center justify-self-center">
           <input
             value={inputValue}
             type="text"
@@ -89,7 +89,7 @@ export const SearchEngineComponent = () => {
               handleSearch();
             }}
             disabled={loading ? true : false}
-            className="max-sm:w-full max-sm:mt-4 max-sm:justify-self-center text-white bg-customBlue hover:bg-customBlue focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm focus:outline-none "
+            className="max-sm:w-full max-sm:mt-4 max-sm:justify-self-center text-white bg-customBlue hover:bg-BlueHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm focus:outline-none "
           >
             {loading ? (
               <svg
@@ -123,7 +123,7 @@ export const SearchEngineComponent = () => {
               style={{
                 justifySelf: "center !important",
               }}
-              className="transition-opacity duration-1000 p-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 self-center"
+              className="animate-pulse transition-opacity duration-1000 p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 self-center justify-self-center"
               role="alert"
             >
               <span className="font-medium">Let op!</span> {error?.msg}
