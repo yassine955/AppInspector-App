@@ -16,21 +16,20 @@ export const NavbarComponent = () => {
         />
       </div>
       <Navbar fluid className="bg-customBlue text-white px-4">
-        <Navbar.Toggle className=" text-white hover:bg-transparent" />
+        <Navbar.Toggle className=" text-white hover:bg-transparent " />
         <Navbar.Collapse>
-          <Navbar.Link
-            className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-gray-50 hover:bg-hoverBlue border-none"
+          <Link
+            className="cursor-pointer self-center whitespace-nowrap text-xl font-semibold text-white hover:text-BlueHover  border-none "
             href="/"
           >
             Home
-          </Navbar.Link>
-
-          <Navbar.Link
-            className="self-center whitespace-nowrap text-xl font-semibold text-white hover:text-gray-50 hover:bg-hoverBlue border-none"
-            href="/meer"
+          </Link>
+          <Link
+            className="cursor-pointer self-center whitespace-nowrap text-xl font-semibold text-white hover:text-BlueHover  border-none"
+            href="/info"
           >
             Meer weten?
-          </Navbar.Link>
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </Fragment>
