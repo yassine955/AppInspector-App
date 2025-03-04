@@ -15,6 +15,7 @@ export default {
         backgroundBlue: "#d9e6ee",
         darkBlueText: "#00338d",
         hoverBlue: "#0096c9d6",
+        BlueHover: "#155e75",
       },
     },
   },
