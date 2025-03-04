@@ -92,7 +92,7 @@ export default function Home() {
           </div>
         ) : (
           <div
-            className="relative overflow-x-auto"
+            className="relative overflow-x-hidden"
             style={{
               height: "60vh",
               justifyItems: "center",
