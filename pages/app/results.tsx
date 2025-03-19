@@ -103,7 +103,7 @@ export default function Home() {
                 <LoadingComp />
               </div>
             ) : (
-              <table className="max-md:w-screen max-lg:w-5/6 max-xl:w-4/5 w-6/12 text-sm text-left bg-backgroundBlue">
+              <table className="mt-5 max-md:w-screen max-lg:w-5/6 max-xl:w-4/5 w-6/12 text-sm text-left bg-backgroundBlue">
                 <thead
                   className="text-xs text-cyan-600  sticky top-0 bg-white "
                   style={{
