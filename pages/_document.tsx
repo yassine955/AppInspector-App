@@ -7,7 +7,7 @@ export default function Document() {
       style={{
         position: "relative",
         backgroundImage:
-          "linear-gradient(rgb(0 150 201 / 21%), rgb(0 0 0 / 0%)), url(/background-network.svg)",
+          "linear-gradient(rgb(0 150 201 / 10%), rgba(0, 0, 0, 0)), url(/background-network.svg)",
 
         backgroundSize: "cover",
         backgroundPosition: "center",
