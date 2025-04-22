@@ -29,23 +29,6 @@ export interface VulnerableApp {
 }
 
 export default function Home() {
-  // let happyOpacity = 0;
-  // let middleOpacity = 0;
-  // let angryOpacity = 0;
-  // if (riskValue < 16) {
-  //   happyOpacity = 100;
-  //   middleOpacity = 20;
-  //   angryOpacity = 5;
-  // } else if (riskValue >= 16 && riskValue <= 35) {
-  //   happyOpacity = 20;
-  //   middleOpacity = 100;
-  //   angryOpacity = 20;
-  // } else if (riskValue > 35 && riskValue <= 50) {
-  //   happyOpacity = 5;
-  //   middleOpacity = 20;
-  //   angryOpacity = 100;
-  // }
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     state: false,
@@ -165,12 +148,9 @@ export default function Home() {
                       >
                         <th
                           scope="row"
-                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "
                         >
-                          <img
-                            className="w-6"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
-                          />
+                          <img className="w-8 rounded-lg" src={row?.icon!} />
                         </th>
                         <th
                           scope="row"

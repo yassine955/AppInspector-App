@@ -4,11 +4,9 @@ import { Fragment, useEffect, useState } from "react";
 
 const Article = () => {
   return (
-    <div className="flex justify-center py-10">
-      <article className="format lg:format-lg text-darkBlueText">
-        <h3 className="text-darkBlueText">
-          Over ons: Wij geloven in betere digitale veiligheid
-        </h3>
+    <div className="flex justify-center py-6">
+      <article className="format lg:format-sm text-darkBlueText">
+        <h3 className="text-darkBlueText">Over ons</h3>
         <p className="text-darkBlueText">
           Wij zijn een groep van ervaren onderzoekers die zich richten op het
           verbeteren van de digitale veiligheid van apps. Met onze kennis en

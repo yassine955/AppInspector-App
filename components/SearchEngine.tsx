@@ -123,7 +123,7 @@ export const SearchEngineComponent = () => {
               style={{
                 justifySelf: "center !important",
               }}
-              className="animate-pulse transition-opacity duration-1000 p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 self-center justify-self-center"
+              className="animate-pulse transition-opacity duration-1000 p-4 text-sm text-red-800 rounded-lg bg-red-50 self-center justify-self-center"
               role="alert"
             >
               <span className="font-medium">Let op!</span> {error?.msg}

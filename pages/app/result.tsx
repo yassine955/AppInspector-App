@@ -33,7 +33,7 @@ const RiskComponent = ({
 
   return (
     <div className="flex mb-5" style={{ alignItems: "center" }}>
-      <article className="pl-4 font-bold text-blue-950 w-6/12">
+      <article className="font-bold text-blue-950 w-6/12">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
       </article>
@@ -96,11 +96,8 @@ export default function SingleResult() {
         ) : (
           <div className="w-full flex justify-center py-8">
             <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
-              <div className="mb-7 " style={{ display: "flex" }}>
-                <img
-                  className="w-12"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/77px-Firefox_logo%2C_2019.svg.png?20221020111440"
-                />
+              <div className="mb-7" style={{ display: "flex" }}>
+                <img className="w-14 h-14 rounded-lg" src={dataRow?.icon!} />
                 <article className="pl-4 text-xl font-bold text-blue-950">
                   <h1>{dataRow?.name}</h1>
                   <h1>{`Versienummer: ${dataRow?.version}`}</h1>

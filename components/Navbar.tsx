@@ -15,23 +15,23 @@ export const NavbarComponent = () => {
           alt="image description"
         />
       </div>
-      <Navbar fluid className="bg-customBlue text-white px-4">
-        <Navbar.Toggle className=" text-white hover:bg-transparent " />
-        <Navbar.Collapse>
+
+      <nav style={{ background: "#0096c9" }}>
+        <div className="flex flex-wrap justify-between items-center w-full p-4">
           <Link
-            className="cursor-pointer self-center whitespace-nowrap text-xl font-semibold text-white hover:text-BlueHover  border-none "
             href="/"
+            className="hover:text-darkBlueText flex items-center text-base space-x-3 rtl:space-x-reverse font-bold text-white"
           >
             Home
           </Link>
           <Link
-            className="cursor-pointer self-center whitespace-nowrap text-xl font-semibold text-white hover:text-BlueHover  border-none"
             href="/info"
+            className="hover:text-darkBlueText text-base font-bold text-white"
           >
             Meer weten?
           </Link>
-        </Navbar.Collapse>
-      </Navbar>
+        </div>
+      </nav>
     </Fragment>
   );
 };

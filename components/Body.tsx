@@ -45,7 +45,7 @@ export const BodyComp = ({
         <div className="flex items-center mx-auto">
           <p className="flex items-center text-sm font-normal text-darkBlueText">
             <span>
-              <b>Disclaimer:</b> <br /> <br />
+              <b>Disclaimer:</b> <br />
               {description}
             </span>
           </p>
