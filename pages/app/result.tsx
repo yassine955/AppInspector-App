@@ -32,7 +32,7 @@ const RiskComponent = ({
   }
 
   return (
-    <div className="flex mb-5" style={{ alignItems: "center" }}>
+    <div className="flex mb-12" style={{ alignItems: "center" }}>
       <article className="font-bold text-blue-950 w-6/12">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
@@ -112,17 +112,17 @@ export default function SingleResult() {
               <RiskComponent
                 riskValue={dataRow?.system_risk!}
                 title="Systeem"
-                description="Een app die het systeem kan laten crashen - krijgt een hoge(re) score voor Systeem."
+                description="Een app die bijvoorbeeld het systeem kan laten crashen - krijgt een hoge(re) score voor Systeem."
               />
               <RiskComponent
                 riskValue={dataRow?.reliability_risk!}
                 title="Betrouwbaarheid"
-                description="Een app die het systeem kan laten crashen - krijgt een hoge(re) score voor Betrouwbaarheid."
+                description="Een app die bijvoorbeeld slechte reviews heeft, krijgt een hoge(re) score voor de betrouwbaarheid van de ontwikkelaar."
               />
               <RiskComponent
                 riskValue={dataRow?.financial_risk!}
                 title="Financiën"
-                description="Een app die bankgegevens niet goed beveiligt - krijgt een hoge(re) score voor Financiën."
+                description="Een app die bijvoorbeeld bankgegevens niet goed beveiligt - krijgt een hoge(re) score voor Financiën."
               />
             </div>
           </div>
