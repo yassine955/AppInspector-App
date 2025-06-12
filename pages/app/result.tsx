@@ -96,11 +96,20 @@ export default function SingleResult() {
         ) : (
           <div className="w-full flex justify-center py-8">
             <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
-              <div className="mb-7" style={{ display: "flex" }}>
-                <img className="w-14 h-14 rounded-lg" src={dataRow?.icon!} />
+              <div
+                className="mb-7"
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <img className="w-16 h-16 rounded-lg" src={dataRow?.icon!} />
                 <article className="pl-4 text-xl font-bold text-blue-950">
                   <h1>{dataRow?.name}</h1>
                   <h1>{`Versienummer: ${dataRow?.version}`}</h1>
+                  <h1>
+                    {`Genre: `}
+                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
+                      {dataRow?.package_name}
+                    </span>
+                  </h1>
                 </article>
               </div>
 
