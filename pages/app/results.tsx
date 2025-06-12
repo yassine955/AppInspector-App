@@ -117,6 +117,14 @@ export default function Home() {
                 </thead>
                 <tbody className="text-blue-950 bg-backgroundBlue">
                   {rows.map((row) => {
+                    const iconBytes: Buffer = Buffer.from(row?.icon!, "base64");
+
+                    const imageUrl = URL.createObjectURL(
+                      new Blob([new Uint8Array(iconBytes)], {
+                        type: "image/png",
+                      })
+                    );
+
                     let icon = "";
 
                     const risks = [
@@ -151,7 +159,7 @@ export default function Home() {
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "
                         >
-                          <img className="w-8 rounded-lg" src={row?.icon!} />
+                          <img className="w-8 rounded-lg" src={imageUrl} />
                         </th>
                         <th
                           scope="row"
