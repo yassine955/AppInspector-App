@@ -39,7 +39,7 @@ export default async function handler(
 
     if (naam) {
       // query = `SELECT * FROM poc.app WHERE name ILIKE '%${naam}%'`; // Case-insensitive search with partial match
-      query = `SELECT * FROM ${table} WHERE name ILIKE '%${naam}%'`; // Case-insensitive search with partial match
+      query = `SELECT * FROM ${table} WHERE title ILIKE '%${naam}%'`; // Case-insensitive search with partial match
     }
 
     const result = await client.query(query);

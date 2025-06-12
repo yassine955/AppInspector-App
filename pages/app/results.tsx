@@ -8,7 +8,7 @@ export interface VulnerableApp {
   vulnerable: boolean;
   id: string;
   hash: string;
-  name: string;
+  title: string;
   package_name: string;
   platform: string;
   publisher: string | null;
@@ -26,6 +26,7 @@ export interface VulnerableApp {
   financial_risk: number | null;
   icon: string | null;
   git_repo_hash: string | null;
+  genre: string | null;
 }
 
 export default function Home() {
@@ -156,7 +157,7 @@ export default function Home() {
                           scope="row"
                           className="px-6 py-4 font-medium whitespace-nowrap dark:text-white"
                         >
-                          {row?.name}
+                          {row?.title}
                         </th>
                         <td className="px-6 py-4"> {row?.version}</td>
                         <td className="px-6 py-4"> {row?.platform}</td>

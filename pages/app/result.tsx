@@ -102,12 +102,12 @@ export default function SingleResult() {
               >
                 <img className="w-16 h-16 rounded-lg" src={dataRow?.icon!} />
                 <article className="pl-4 text-xl font-bold text-blue-950">
-                  <h1>{dataRow?.name}</h1>
+                  <h1>{dataRow?.title}</h1>
                   <h1>{`Versienummer: ${dataRow?.version}`}</h1>
                   <h1>
                     {`Genre: `}
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
-                      {dataRow?.package_name}
+                      {dataRow?.genre}
                     </span>
                   </h1>
                 </article>
