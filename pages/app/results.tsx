@@ -135,13 +135,11 @@ export default function Home() {
                       max: number
                     ) => risk > min && risk <= max;
 
-                    if (risks.some((risk) => checkRiskRange(risk!, 35, 50))) {
+                    if (risks.some((risk) => checkRiskRange(risk!, 0.7, 1))) {
                       icon = "/angry.svg";
-                    } else if (
-                      risks.some((risk) => checkRiskRange(risk!, 16, 35))
-                    ) {
+                    } else if (risks.some((risk) => checkRiskRange(risk!, 0.4, 0.7))) {
                       icon = "/middle.svg";
-                    } else if (risks.some((risk) => risk! < 16)) {
+                    } else if (risks.some((risk) => risk! < 0.4)) {
                       icon = "/happy.svg";
                     }
 

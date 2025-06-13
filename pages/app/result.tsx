@@ -15,21 +15,23 @@ const RiskComponent = ({
   riskValue: number;
 }) => {
   let happyOpacity = 0;
-  let middleOpacity = 0;
-  let angryOpacity = 0;
-  if (riskValue < 16) {
-    happyOpacity = 100;
-    middleOpacity = 20;
-    angryOpacity = 5;
-  } else if (riskValue >= 16 && riskValue <= 35) {
-    happyOpacity = 20;
-    middleOpacity = 100;
-    angryOpacity = 20;
-  } else if (riskValue > 35 && riskValue <= 100) {
-    happyOpacity = 5;
-    middleOpacity = 20;
-    angryOpacity = 100;
-  }
+let middleOpacity = 0;
+let angryOpacity = 0;
+
+if (riskValue < 0.4) {
+  happyOpacity = 100;
+  middleOpacity = 20;
+  angryOpacity = 5;
+} else if (riskValue >= 0.4 && riskValue <= 0.7) {
+  happyOpacity = 20;
+  middleOpacity = 100;
+  angryOpacity = 20;
+} else if (riskValue > 0.7 && riskValue <= 1) {
+  happyOpacity = 5;
+  middleOpacity = 20;
+  angryOpacity = 100;
+}
+
 
   return (
     <div className="flex mb-12" style={{ alignItems: "center" }}>
@@ -74,6 +76,7 @@ export default function SingleResult() {
 
           if (data) {
             setDataRow(data[0]);
+            
             setLoading(false);
           } else {
             push("/");
