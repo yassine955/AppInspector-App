@@ -73,6 +73,7 @@ export default function SingleResult() {
           const data = await response.json();
 
           if (data) {
+            console.log({ data });
             setDataRow(data[0]);
             setLoading(false);
           } else {
@@ -100,14 +101,25 @@ export default function SingleResult() {
                 className="mb-7"
                 style={{ display: "flex", alignItems: "center" }}
               >
-                <img className="w-16 h-16 rounded-lg" src={dataRow?.icon!} />
+                {dataRow?.icon ? (
+                  <img
+                    className="w-16 h-16 rounded-lg"
+                    src={`data:image/png;base64,${btoa(
+                      ((dataRow?.icon as any)?.data as number[])
+                        .map((byte) => String.fromCharCode(byte))
+                        .join("")
+                    )}`}
+                  />
+                ) : null}
                 <article className="pl-4 text-xl font-bold text-blue-950">
                   <h1>{dataRow?.title}</h1>
                   <h1>{`Versienummer: ${dataRow?.version}`}</h1>
                   <h1>
                     {`Genre: `}
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
-                      {dataRow?.genre}
+                      {dataRow?.genre
+                        ? dataRow?.genre
+                        : "No genre specified -> fix DB"}
                     </span>
                   </h1>
                 </article>

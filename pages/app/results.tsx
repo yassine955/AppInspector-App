@@ -3,6 +3,7 @@ import { LoadingComp } from "@/components/Loading";
 import { NavbarComponent } from "@/components/Navbar";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
+import { buffer } from "stream/consumers";
 
 export interface VulnerableApp {
   vulnerable: boolean;
@@ -24,7 +25,7 @@ export interface VulnerableApp {
   reliability_risk: number | null;
   risk_description: string | null;
   financial_risk: number | null;
-  icon: string | null;
+  icon: Buffer | null;
   git_repo_hash: string | null;
   genre: string | null;
 }
@@ -48,8 +49,6 @@ export default function Home() {
         try {
           const response = await fetch(`/api/results?naam=${name}`);
           const data = (await response.json()) as VulnerableApp[];
-
-          console.log({ data });
 
           if (data.length > 0) {
             setRows(data);
@@ -117,15 +116,11 @@ export default function Home() {
                 </thead>
                 <tbody className="text-blue-950 bg-backgroundBlue">
                   {rows.map((row) => {
-                    const iconBytes: Buffer = Buffer.from(row?.icon!, "base64");
-
-                    const imageUrl = URL.createObjectURL(
-                      new Blob([new Uint8Array(iconBytes)], {
-                        type: "image/png",
-                      })
-                    );
-
                     let icon = "";
+
+                    const binary = ((row?.icon as any).data as number[])
+                      .map((byte) => String.fromCharCode(byte))
+                      .join("");
 
                     const risks = [
                       row?.financial_risk,
@@ -159,7 +154,10 @@ export default function Home() {
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "
                         >
-                          <img className="w-8 rounded-lg" src={imageUrl} />
+                          <img
+                            className="w-10 rounded-md"
+                            src={`data:image/png;base64,${btoa(binary)}`}
+                          />
                         </th>
                         <th
                           scope="row"

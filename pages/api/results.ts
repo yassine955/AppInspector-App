@@ -45,7 +45,6 @@ export default async function handler(
     const result = await client.query(query);
 
     if (result?.rows) {
-      console.log(result?.rows);
       res.status(200).json(result?.rows);
     } else {
       res.status(200).json([]);
