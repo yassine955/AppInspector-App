@@ -25,7 +25,7 @@ const RiskComponent = ({
     happyOpacity = 20;
     middleOpacity = 100;
     angryOpacity = 20;
-  } else if (riskValue > 35 && riskValue <= 50) {
+  } else if (riskValue > 35 && riskValue <= 100) {
     happyOpacity = 5;
     middleOpacity = 20;
     angryOpacity = 100;
@@ -73,7 +73,6 @@ export default function SingleResult() {
           const data = await response.json();
 
           if (data) {
-            console.log({ data });
             setDataRow(data[0]);
             setLoading(false);
           } else {
@@ -113,7 +112,14 @@ export default function SingleResult() {
                 ) : null}
                 <article className="pl-4 text-xl font-bold text-blue-950">
                   <h1>{dataRow?.title}</h1>
-                  <h1>{`Versienummer: ${dataRow?.version}`}</h1>
+                  <h1>
+                    {`Versienummer: `}
+                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
+                      {dataRow?.version
+                        ? dataRow?.version
+                        : "No genre specified -> fix DB"}
+                    </span>
+                  </h1>
                   <h1>
                     {`Genre: `}
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
