@@ -1,9 +1,10 @@
 import { BodyComp } from "@/components/Body";
 import { LoadingComp } from "@/components/Loading";
-import { NavbarComponent } from "@/components/Navbar";
-import { useRouter } from "next/router";
+import { db } from "@/src/drizzle/db";
+import { apps, AppType } from "@/src/drizzle/schema/apps";
+import { eq } from "drizzle-orm";
+import { GetServerSideProps } from "next/types";
 import { Fragment, useEffect, useState } from "react";
-import { VulnerableApp } from "./results";
 
 const RiskComponent = ({
   description,
@@ -37,7 +38,6 @@ const RiskComponent = ({
       <article className="font-bold text-blue-950 w-6/12">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
-       
       </article>
       <div className="flex w-6/12 justify-center">
         <img
@@ -56,38 +56,48 @@ const RiskComponent = ({
   );
 };
 
-export default function SingleResult() {
-  const [dataRow, setDataRow] = useState<VulnerableApp>();
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const get_app_by_id = await db
+    .select({
+      id: apps.id,
+      title: apps.title,
+      version: apps.version,
+      platform: apps.platform,
+      financial_risk: apps.financial_risk,
+      privacy_risk: apps.privacy_risk,
+      reliability_risk: apps.reliability_risk,
+      system_risk: apps.system_risk,
+    })
+    .from(apps)
+    .where(eq(apps.id, Number(query?.id)))
+    .limit(1);
 
-  const {
-    push,
-    query: { id },
-  } = useRouter();
+  if (get_app_by_id.length === 0) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
-  const [loading, setLoading] = useState(false);
+  return {
+    props: {
+      single_app: get_app_by_id[0],
+    },
+  };
+};
+
+export default function SingleResult({ single_app }: { single_app: AppType }) {
+  const [loading, setLoading] = useState(true);
+  const [iconLoading, setIconLoading] = useState(true);
+  const [iconError, setIconError] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      if (id) {
-        try {
-          const response = await fetch(`/api/single_result?id=${id}`);
-          const data = await response.json();
-
-          if (data) {
-            setDataRow(data[0]);
-
-            setLoading(false);
-          } else {
-            push("/");
-          }
-        } catch (error) {
-          console.error("Error fetching search results:", error);
-        }
-      }
-    };
-    fetchData();
-  }, [id]);
+    if (single_app) {
+      setLoading(false);
+    }
+  }, [single_app]);
 
   return (
     <Fragment>
@@ -103,54 +113,70 @@ export default function SingleResult() {
                 className="mb-7"
                 style={{ display: "flex", alignItems: "center" }}
               >
-                {dataRow?.icon ? (
-                  <img
-                    className="w-16 h-16 rounded-lg"
-                    src={`data:image/png;base64,${btoa(
-                      ((dataRow?.icon as any)?.data as number[])
-                        .map((byte) => String.fromCharCode(byte))
-                        .join("")
-                    )}`}
-                  />
-                ) : null}
+                {single_app?.id && (
+                  <div className="relative w-16 h-16">
+                    {iconLoading && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="animate-spin h-5 w-5 border-4 border-blue-400 border-t-transparent rounded-full" />
+                      </div>
+                    )}
+                    {!iconError ? (
+                      <img
+                        src={`/api/icon/${single_app.id}`}
+                        alt="App icon"
+                        onLoad={() => setIconLoading(false)}
+                        onError={() => {
+                          setIconLoading(false);
+                          setIconError(true);
+                        }}
+                        className={`w-16 h-16 rounded-lg object-cover ${
+                          iconLoading ? "invisible" : "visible"
+                        }`}
+                      />
+                    ) : (
+                      <div className="w-16 h-16 flex items-center justify-center bg-gray-200 text-xs text-gray-600 rounded-lg">
+                        ❌
+                      </div>
+                    )}
+                  </div>
+                )}
                 <article className="pl-4 text-xl font-bold text-blue-950">
-                  <h1>{dataRow?.title}</h1>
+                  <h1>{single_app?.title}</h1>
+
                   <h1>
                     {`Versienummer: `}
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
-                      {dataRow?.version
-                        ? dataRow?.version
+                      {single_app?.version
+                        ? single_app?.version
                         : "Version unknown"}
                     </span>
                   </h1>
                   <h1>
                     {`Genre: `}
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
-                      {dataRow?.genre
-                        ? dataRow?.genre
-                        : "Genre unknown"}
+                      {single_app?.genre ? single_app?.genre : "Genre unknown"}
                     </span>
                   </h1>
                 </article>
               </div>
 
               <RiskComponent
-                riskValue={dataRow?.privacy_risk!}
+                riskValue={single_app?.privacy_risk!}
                 title="Privacy"
                 description="Een app die bijvoorbeeld je email deelt - krijgt een hogere score voor privacy."
               />
               <RiskComponent
-                riskValue={dataRow?.system_risk!}
+                riskValue={single_app?.system_risk!}
                 title="Systeem"
                 description="Een app die bijvoorbeeld het systeem kan laten crashen - krijgt een hoge(re) score voor Systeem."
               />
               <RiskComponent
-                riskValue={dataRow?.reliability_risk!}
+                riskValue={single_app?.reliability_risk!}
                 title="Betrouwbaarheid"
                 description="Een app die bijvoorbeeld slechte reviews heeft, krijgt een hoge(re) score voor de betrouwbaarheid van de ontwikkelaar."
               />
               <RiskComponent
-                riskValue={dataRow?.financial_risk!}
+                riskValue={single_app?.financial_risk!}
                 title="Financiën"
                 description="Een app die bijvoorbeeld bankgegevens niet goed beveiligt - krijgt een hoge(re) score voor Financiën."
               />

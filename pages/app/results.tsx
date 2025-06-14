@@ -1,70 +1,53 @@
 import { BodyComp } from "@/components/Body";
+import IconWithLoading from "@/components/IconWithLoading";
 import { LoadingComp } from "@/components/Loading";
-import { NavbarComponent } from "@/components/Navbar";
+import { db } from "@/src/drizzle/db";
+import { apps, AppType } from "@/src/drizzle/schema/apps";
+import { ilike } from "drizzle-orm";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
-import { buffer } from "stream/consumers";
 
-export interface VulnerableApp {
-  vulnerable: boolean;
-  id: string;
-  hash: string;
-  title: string;
-  package_name: string;
-  platform: string;
-  publisher: string | null;
-  social_media_scan: string | null;
-  version: string;
-  permissions_friendly_names: string | null;
-  risk: number;
-  num_tests: number | null;
-  last_update: string | null;
-  total_score: number | null;
-  system_risk: number | null;
-  privacy_risk: number | null;
-  reliability_risk: number | null;
-  risk_description: string | null;
-  financial_risk: number | null;
-  icon: Buffer | null;
-  git_repo_hash: string | null;
-  genre: string | null;
-}
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const get_all_apps_by_title = await db
+    .select({
+      id: apps.id,
+      title: apps.title,
+      version: apps.version,
+      platform: apps.platform,
+      financial_risk: apps.financial_risk,
+      privacy_risk: apps.privacy_risk,
+      reliability_risk: apps.reliability_risk,
+      system_risk: apps.system_risk,
+    })
+    .from(apps)
+    .where(ilike(apps.title, `%${String(query?.title).trim()}%`));
 
-export default function Home() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState({
-    state: false,
-    msg: "",
-  });
-  const {
-    push,
-    query: { name },
-  } = useRouter();
-  const [rows, setRows] = useState<VulnerableApp[]>([]);
+  if (get_all_apps_by_title.length === 0) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      all_apps: get_all_apps_by_title,
+    },
+  };
+};
+
+export default function Home({ all_apps }: { all_apps: AppType[] }) {
+  const [loading, setLoading] = useState(true);
+  const { push } = useRouter();
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      if (name) {
-        try {
-          const response = await fetch(`/api/results?naam=${name}`);
-          const data = (await response.json()) as VulnerableApp[];
-
-          if (data.length > 0) {
-            setRows(data);
-            setLoading(false);
-          } else {
-            setLoading(false);
-            setError({ state: true, msg: "Deze applicatie bestaat niet" });
-            push("/");
-          }
-        } catch (error) {
-          console.error("Error fetching search results:", error);
-        }
-      }
-    };
-    fetchData();
-  }, [name]);
+    if (all_apps) {
+      setLoading(false);
+    }
+  }, [all_apps]);
 
   return (
     <Fragment>
@@ -115,12 +98,8 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody className="text-blue-950 bg-backgroundBlue">
-                  {rows.map((row) => {
+                  {all_apps.map((row) => {
                     let icon = "";
-
-                    const binary = ((row?.icon as any).data as number[])
-                      .map((byte) => String.fromCharCode(byte))
-                      .join("");
 
                     const risks = [
                       row?.financial_risk,
@@ -137,7 +116,9 @@ export default function Home() {
 
                     if (risks.some((risk) => checkRiskRange(risk!, 0.7, 1))) {
                       icon = "/angry.svg";
-                    } else if (risks.some((risk) => checkRiskRange(risk!, 0.4, 0.7))) {
+                    } else if (
+                      risks.some((risk) => checkRiskRange(risk!, 0.4, 0.7))
+                    ) {
                       icon = "/middle.svg";
                     } else if (risks.some((risk) => risk! < 0.4)) {
                       icon = "/happy.svg";
@@ -152,10 +133,7 @@ export default function Home() {
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "
                         >
-                          <img
-                            className="w-10 rounded-md"
-                            src={`data:image/png;base64,${btoa(binary)}`}
-                          />
+                          <IconWithLoading appId={row.id} />
                         </th>
                         <th
                           scope="row"

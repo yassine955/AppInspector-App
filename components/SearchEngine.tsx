@@ -3,14 +3,6 @@ import { Fragment, useState } from "react";
 import { Button } from "flowbite-react";
 import { HiOutlineSearch } from "react-icons/hi";
 
-type Resultaat = {
-  id: number;
-  naam: string;
-  versie: string;
-  platform: "Windows" | "MacOS" | "Linux" | "Android" | "iOS";
-  resultaat: "Succes" | "Fout" | "Waarschuwing";
-  icoon: string;
-};
 export const SearchEngineComponent = () => {
   const { push } = useRouter();
   const [inputValue, setInputValue] = useState("");
@@ -21,30 +13,24 @@ export const SearchEngineComponent = () => {
   });
 
   const handleSearch = async () => {
-    setError({
-      state: false,
-      msg: "",
-    });
+    setError({ state: false, msg: "" });
+
+    if (inputValue === "") {
+      setError({ state: true, msg: "Vul een app-naam in!" });
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      setLoading(true);
-      if (inputValue === "") {
-        setLoading(false);
-        return setError({
-          state: true,
-          msg: "Vul een app-naam in!",
-        });
-      }
-      const response = await fetch(`/api/results?naam=${inputValue}`);
+      const response = await fetch(`/api/find_app?title=${inputValue}`);
+      const look_for_app = await response.json();
 
-      const data = (await response.json()) as Resultaat[];
-
-      if (data.length) {
-        setLoading(false);
-        push({
+      if (look_for_app === true) {
+        // Don’t set loading false — navigate while loading is true
+        await push({
           pathname: "/app/results",
-          query: {
-            name: inputValue,
-          },
+          query: { title: inputValue },
         });
       } else {
         setError({
@@ -53,10 +39,9 @@ export const SearchEngineComponent = () => {
         });
         setLoading(false);
       }
-
-      // setResults(data);
     } catch (error) {
       console.error("Error fetching search results:", error);
+      setLoading(false); // Fallback in case of error
     }
   };
 
