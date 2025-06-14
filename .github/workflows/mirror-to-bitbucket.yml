@@ -16,7 +16,7 @@ jobs:
 
       - name: Push to Bitbucket
         run: |
-          git remote add bitbucket https://$BB_USERNAME:$BB_APP_PASSWORD@bitbucket.org/yassine9/appinspector-ui.git
+          git remote add bitbucket https://$BB_USERNAME:$BB_APP_PASSWORD@bitbucket.org/Apican/appinspector-ui.git
           git push --mirror bitbucket
         env:
           BB_USERNAME: ${{ secrets.BB_USERNAME }}
