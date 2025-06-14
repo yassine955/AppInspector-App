@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/router';
 import { Fragment, useState } from 'react';
 import { Button } from 'flowbite-react';
@@ -15,7 +17,7 @@ export const SearchEngineComponent = () => {
   const handleSearch = async () => {
     setError({ state: false, msg: '' });
 
-    if (inputValue === '') {
+    if (inputValue.trim() === '') {
       setError({ state: true, msg: 'Vul een app-naam in!' });
       return;
     }
@@ -27,7 +29,6 @@ export const SearchEngineComponent = () => {
       const look_for_app = await response.json();
 
       if (look_for_app === true) {
-        // Don’t set loading false — navigate while loading is true
         await push({
           pathname: '/app/results',
           query: { title: inputValue },
@@ -41,30 +42,22 @@ export const SearchEngineComponent = () => {
       }
     } catch (error) {
       console.error('Error fetching search results:', error);
-      setLoading(false); // Fallback in case of error
+      setLoading(false);
     }
   };
 
   return (
     <Fragment>
-      <div
-        style={{
-          justifyContent: 'center',
-          marginTop: '10%',
-          justifyItems: 'center !important',
-        }}
-      >
-        <div className="sm:flex justify-center self-center justify-self-center">
+      <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
+        {/* Input + Button */}
+        <div className="w-full max-w-sm sm:max-w-md sm:flex sm:items-center sm:justify-center gap-2">
           <input
             value={inputValue}
+            autoFocus
             type="text"
             onChange={(e) => setInputValue(e.target.value)}
-            id="default-input"
-            style={{
-              width: '22rem',
-            }}
             placeholder="Type de naam van de app"
-            className=" placeholder-darkBlueText sm:mr-2 shadow-lg bg-gray-50 border border-gray-300 font-bold text-darkBlueText text-sm rounded-lg focus:ring-blue-200 focus:border-blue-200 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full sm:flex-1 shadow-lg bg-gray-50 border border-gray-300 font-bold text-darkBlueText text-sm rounded-lg focus:ring-blue-200 focus:border-blue-200 p-2.5 placeholder-darkBlueText"
           />
 
           <Button
@@ -73,8 +66,8 @@ export const SearchEngineComponent = () => {
               e.preventDefault();
               handleSearch();
             }}
-            disabled={loading ? true : false}
-            className="max-sm:w-full max-sm:mt-4 max-sm:justify-self-center text-white bg-customBlue hover:bg-BlueHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm focus:outline-none "
+            disabled={loading}
+            className="mt-2 sm:mt-0 w-full sm:w-auto text-white bg-customBlue hover:bg-BlueHover focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm focus:outline-none"
           >
             {loading ? (
               <svg
@@ -95,26 +88,22 @@ export const SearchEngineComponent = () => {
                 />
               </svg>
             ) : (
-              <Fragment>
-                <HiOutlineSearch className="h-5 w-5" />
-              </Fragment>
+              <HiOutlineSearch className="h-5 w-5" />
             )}
           </Button>
         </div>
 
-        {error?.state ? (
-          <div className="mt-5">
+        {/* Error message */}
+        {error?.state && (
+          <div className="mt-5 max-w-md w-full">
             <div
-              style={{
-                justifySelf: 'center !important',
-              }}
-              className="animate-pulse transition-opacity duration-1000 p-4 text-sm text-red-800 rounded-lg bg-red-50 self-center justify-self-center"
+              className="animate-pulse p-4 text-sm text-red-800 rounded-lg bg-red-50"
               role="alert"
             >
-              <span className="font-medium">Let op!</span> {error?.msg}
+              <span className="font-medium">Let op!</span> {error.msg}
             </div>
           </div>
-        ) : null}
+        )}
       </div>
     </Fragment>
   );
