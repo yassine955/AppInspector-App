@@ -1,0 +1,23 @@
+name: Mirror to Bitbucket
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full Git history
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Zorgt ervoor dat hele git geschiedenis beschikbaar is
+
+      - name: Push to Bitbucket
+        run: |
+          git remote add bitbucket https://$BB_USERNAME:$BB_APP_PASSWORD@bitbucket.org/yassine9/appinspector-ui.git
+          git push --mirror bitbucket
+        env:
+          BB_USERNAME: ${{ secrets.BB_USERNAME }}
+          BB_APP_PASSWORD: ${{ secrets.BB_APP_PASSWORD }}
