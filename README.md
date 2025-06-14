@@ -29,6 +29,7 @@ AppInspector serves as a risk assessment interface for mobile applications. It v
 
 - Environment variables configured (see `.env.example`)
 
+```
 📦 appinspector-app
 ├── 📁 components # Reusable UI components
 │ ├── Body.tsx
@@ -99,3 +100,4 @@ AppInspector serves as a risk assessment interface for mobile applications. It v
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── yarn.lock
+```
