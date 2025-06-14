@@ -1,5 +1,4 @@
 import { BodyComp } from "@/components/Body";
-import { LoadingComp } from "@/components/Loading";
 import { db } from "@/src/drizzle/db";
 import { apps, AppType } from "@/src/drizzle/schema/apps";
 import { eq } from "drizzle-orm";
@@ -34,7 +33,7 @@ const RiskComponent = ({
   }
 
   return (
-    <div className="flex mb-12" style={{ alignItems: "center" }}>
+    <div className="flex mb-12 items-center">
       <article className="font-bold text-blue-950 w-6/12">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
@@ -63,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       title: apps.title,
       version: apps.version,
       platform: apps.platform,
+      genre: apps.genre,
       financial_risk: apps.financial_risk,
       privacy_risk: apps.privacy_risk,
       reliability_risk: apps.reliability_risk,
@@ -103,16 +103,38 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
     <Fragment>
       <BodyComp results>
         {loading ? (
-          <div className="flex justify-center mt-5">
-            <LoadingComp />
+          <div className="w-full flex justify-center py-8 animate-pulse">
+            <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
+              <div
+                className="mb-7 flex items-center"
+                style={{ height: "64px" }}
+              >
+                <div className="w-16 h-16 bg-gray-300 rounded-lg" />
+                <div className="pl-4 space-y-2">
+                  <div className="h-6 bg-gray-300 rounded w-48" />
+                  <div className="h-5 bg-gray-300 rounded w-40" />
+                  <div className="h-5 bg-gray-300 rounded w-32" />
+                </div>
+              </div>
+              {[...Array(4)].map((_, idx) => (
+                <div key={idx} className="flex mb-12 items-center">
+                  <div className="w-6/12">
+                    <div className="h-6 bg-gray-300 rounded w-40 mb-2" />
+                    <div className="h-4 bg-gray-300 rounded w-full" />
+                  </div>
+                  <div className="w-6/12 flex justify-center space-x-2">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full" />
+                    <div className="w-6 h-6 bg-gray-300 rounded-full" />
+                    <div className="w-6 h-6 bg-gray-300 rounded-full" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="w-full flex justify-center py-8">
             <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
-              <div
-                className="mb-7"
-                style={{ display: "flex", alignItems: "center" }}
-              >
+              <div className="mb-7 flex items-center">
                 {single_app?.id && (
                   <div className="relative w-16 h-16">
                     {iconLoading && (
@@ -142,19 +164,16 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
                 )}
                 <article className="pl-4 text-xl font-bold text-blue-950">
                   <h1>{single_app?.title}</h1>
-
                   <h1>
-                    {`Versienummer: `}
-                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
-                      {single_app?.version
-                        ? single_app?.version
-                        : "Version unknown"}
+                    Versienummer:
+                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset ml-2">
+                      {single_app?.version || "Version unknown"}
                     </span>
                   </h1>
                   <h1>
-                    {`Genre: `}
-                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
-                      {single_app?.genre ? single_app?.genre : "Genre unknown"}
+                    Genre:
+                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset ml-2">
+                      {single_app?.genre || "Genre unknown"}
                     </span>
                   </h1>
                 </article>
