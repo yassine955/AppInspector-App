@@ -15,29 +15,29 @@ const RiskComponent = ({
   riskValue: number;
 }) => {
   let happyOpacity = 0;
-let middleOpacity = 0;
-let angryOpacity = 0;
+  let middleOpacity = 0;
+  let angryOpacity = 0;
 
-if (riskValue < 0.4) {
-  happyOpacity = 100;
-  middleOpacity = 20;
-  angryOpacity = 5;
-} else if (riskValue >= 0.4 && riskValue <= 0.7) {
-  happyOpacity = 20;
-  middleOpacity = 100;
-  angryOpacity = 20;
-} else if (riskValue > 0.7 && riskValue <= 1) {
-  happyOpacity = 5;
-  middleOpacity = 20;
-  angryOpacity = 100;
-}
-
+  if (riskValue < 0.35) {
+    happyOpacity = 100;
+    middleOpacity = 20;
+    angryOpacity = 5;
+  } else if (riskValue >= 0.35 && riskValue <= 0.67) {
+    happyOpacity = 20;
+    middleOpacity = 100;
+    angryOpacity = 20;
+  } else if (riskValue > 0.67 && riskValue <= 1) {
+    happyOpacity = 5;
+    middleOpacity = 20;
+    angryOpacity = 100;
+  }
 
   return (
     <div className="flex mb-12" style={{ alignItems: "center" }}>
       <article className="font-bold text-blue-950 w-6/12">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
+       
       </article>
       <div className="flex w-6/12 justify-center">
         <img
@@ -76,7 +76,7 @@ export default function SingleResult() {
 
           if (data) {
             setDataRow(data[0]);
-            
+
             setLoading(false);
           } else {
             push("/");
@@ -120,7 +120,7 @@ export default function SingleResult() {
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
                       {dataRow?.version
                         ? dataRow?.version
-                        : "No genre specified -> fix DB"}
+                        : "Version unknown"}
                     </span>
                   </h1>
                   <h1>
@@ -128,7 +128,7 @@ export default function SingleResult() {
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
                       {dataRow?.genre
                         ? dataRow?.genre
-                        : "No genre specified -> fix DB"}
+                        : "Genre unknown"}
                     </span>
                   </h1>
                 </article>
