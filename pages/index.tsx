@@ -16,7 +16,7 @@ export default function Home() {
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <BodyComp results={false}>
+      <BodyComp>
         <SearchEngineComponent />
       </BodyComp>
     </div>
