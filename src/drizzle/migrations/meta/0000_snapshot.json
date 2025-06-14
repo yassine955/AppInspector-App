@@ -22,9 +22,7 @@
         "poc.app_id_unique": {
           "name": "poc.app_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "id"
-          ]
+          "columns": ["id"]
         }
       },
       "policies": {},

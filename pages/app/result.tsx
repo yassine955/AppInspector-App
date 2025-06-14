@@ -1,9 +1,9 @@
-import { BodyComp } from "@/components/Body";
-import { db } from "@/src/drizzle/db";
-import { apps, AppType } from "@/src/drizzle/schema/apps";
-import { eq } from "drizzle-orm";
-import { GetServerSideProps } from "next/types";
-import { Fragment, useEffect, useState } from "react";
+import { BodyComp } from '@/components/Body';
+import { db } from '@/src/drizzle/db';
+import { apps, AppType } from '@/src/drizzle/schema/apps';
+import { eq } from 'drizzle-orm';
+import { GetServerSideProps } from 'next/types';
+import { Fragment, useEffect, useState } from 'react';
 
 const RiskComponent = ({
   description,
@@ -39,16 +39,8 @@ const RiskComponent = ({
         <p className="text-sm font-normal">{description}</p>
       </article>
       <div className="flex w-6/12 justify-center">
-        <img
-          className="mr-2"
-          style={{ opacity: `${happyOpacity}%` }}
-          src="/happy.svg"
-        />
-        <img
-          className="mr-2"
-          style={{ opacity: `${middleOpacity}%` }}
-          src="/middle.svg"
-        />
+        <img className="mr-2" style={{ opacity: `${happyOpacity}%` }} src="/happy.svg" />
+        <img className="mr-2" style={{ opacity: `${middleOpacity}%` }} src="/middle.svg" />
         <img style={{ opacity: `${angryOpacity}%` }} src="/angry.svg" />
       </div>
     </div>
@@ -75,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (get_app_by_id.length === 0) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };
@@ -105,10 +97,7 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
         {loading ? (
           <div className="w-full flex justify-center py-8 animate-pulse">
             <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
-              <div
-                className="mb-7 flex items-center"
-                style={{ height: "64px" }}
-              >
+              <div className="mb-7 flex items-center" style={{ height: '64px' }}>
                 <div className="w-16 h-16 bg-gray-300 rounded-lg" />
                 <div className="pl-4 space-y-2">
                   <div className="h-6 bg-gray-300 rounded w-48" />
@@ -152,7 +141,7 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
                           setIconError(true);
                         }}
                         className={`w-16 h-16 rounded-lg object-cover ${
-                          iconLoading ? "invisible" : "visible"
+                          iconLoading ? 'invisible' : 'visible'
                         }`}
                       />
                     ) : (
@@ -167,13 +156,13 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
                   <h1>
                     Versienummer:
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset ml-2">
-                      {single_app?.version || "Version unknown"}
+                      {single_app?.version || 'Version unknown'}
                     </span>
                   </h1>
                   <h1>
                     Genre:
                     <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset ml-2">
-                      {single_app?.genre || "Genre unknown"}
+                      {single_app?.genre || 'Genre unknown'}
                     </span>
                   </h1>
                 </article>

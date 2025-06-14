@@ -1,12 +1,9 @@
-import { db } from "@/src/drizzle/db";
-import { NextApiRequest, NextApiResponse } from "next";
-import { apps } from "@/src/drizzle/schema";
-import { ilike } from "drizzle-orm";
+import { db } from '@/src/drizzle/db';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { apps } from '@/src/drizzle/schema';
+import { ilike } from 'drizzle-orm';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { title } = req.query;
 

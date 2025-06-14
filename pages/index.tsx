@@ -1,6 +1,6 @@
-import { BodyComp } from "@/components/Body";
-import { SearchEngineComponent } from "@/components/SearchEngine";
-import { useEffect, useState } from "react";
+import { BodyComp } from '@/components/Body';
+import { SearchEngineComponent } from '@/components/SearchEngine';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div
       className={`transition-opacity duration-500 ease-out ${
-        visible ? "opacity-100" : "opacity-0"
+        visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
       <BodyComp results={false}>
