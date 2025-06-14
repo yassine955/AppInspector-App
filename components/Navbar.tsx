@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Fragment } from "react";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Fragment } from 'react';
 
 export const NavbarComponent = () => {
   const { push } = useRouter();
@@ -8,14 +8,14 @@ export const NavbarComponent = () => {
     <Fragment>
       <div className="bg-white pb-2">
         <img
-          onClick={() => push("/")}
+          onClick={() => push('/')}
           className="h-auto max-sm:w-full max-md:w-1/2 max-lg:w-1/2  max-w-sm pt-2 px-4 hover:cursor-pointer"
           src="/logo-app.svg"
           alt="image description"
         />
       </div>
 
-      <nav style={{ background: "#0096c9" }}>
+      <nav style={{ background: '#0096c9' }}>
         <div className="flex flex-wrap justify-between items-center w-full p-4">
           <Link
             href="/"
@@ -23,10 +23,7 @@ export const NavbarComponent = () => {
           >
             Home
           </Link>
-          <Link
-            href="/info"
-            className="hover:text-darkBlueText text-base font-bold text-white"
-          >
+          <Link href="/info" className="hover:text-darkBlueText text-base font-bold text-white">
             Meer weten?
           </Link>
         </div>

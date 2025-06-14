@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export default function IconWithLoading({ appId }: { appId: number }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,9 +16,7 @@ export default function IconWithLoading({ appId }: { appId: number }) {
       <img
         src={iconUrl}
         alt="App icon"
-        className={`w-10 h-10 rounded-md object-cover ${
-          isLoading ? "invisible" : "visible"
-        }`}
+        className={`w-10 h-10 rounded-md object-cover ${isLoading ? 'invisible' : 'visible'}`}
         onLoad={() => setIsLoading(false)}
         onError={() => {
           setIsLoading(false);

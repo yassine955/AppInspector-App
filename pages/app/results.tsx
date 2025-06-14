@@ -1,11 +1,11 @@
-import { BodyComp } from "@/components/Body";
-import IconWithLoading from "@/components/IconWithLoading";
-import { db } from "@/src/drizzle/db";
-import { apps, AppType } from "@/src/drizzle/schema/apps";
-import { ilike } from "drizzle-orm";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { BodyComp } from '@/components/Body';
+import IconWithLoading from '@/components/IconWithLoading';
+import { db } from '@/src/drizzle/db';
+import { apps, AppType } from '@/src/drizzle/schema/apps';
+import { ilike } from 'drizzle-orm';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { Fragment, useEffect, useState } from 'react';
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const get_all_apps_by_title = await db
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (get_all_apps_by_title.length === 0) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };
@@ -54,22 +54,12 @@ export default function Home({ all_apps }: { all_apps: AppType[] }) {
         {loading ? (
           <div
             className="relative overflow-x-hidden animate-pulse"
-            style={{ height: "60vh", justifyItems: "center" }}
+            style={{ height: '60vh', justifyItems: 'center' }}
           >
             <table className="mt-5 max-md:w-screen max-lg:w-5/6 max-xl:w-4/5 w-6/12 text-sm text-left bg-backgroundBlue">
-              <thead
-                className="text-xs text-cyan-600 sticky top-0 bg-white"
-                style={{ zIndex: 1 }}
-              >
+              <thead className="text-xs text-cyan-600 sticky top-0 bg-white" style={{ zIndex: 1 }}>
                 <tr>
-                  {[
-                    "Icoon",
-                    "Naam",
-                    "Versie",
-                    "Platform",
-                    "Resultaat",
-                    "Details",
-                  ].map((header) => (
+                  {['Icoon', 'Naam', 'Versie', 'Platform', 'Resultaat', 'Details'].map((header) => (
                     <th key={header} className="px-6 py-3">
                       {header}
                     </th>
@@ -78,10 +68,7 @@ export default function Home({ all_apps }: { all_apps: AppType[] }) {
               </thead>
               <tbody className="text-blue-950 bg-backgroundBlue">
                 {[...Array(8)].map((_, i) => (
-                  <tr
-                    key={i}
-                    className="font-medium bg-backgroundBlue border-b text-darkBlueText"
-                  >
+                  <tr key={i} className="font-medium bg-backgroundBlue border-b text-darkBlueText">
                     <td className="px-6 py-4">
                       <div className="w-10 h-10 bg-gray-300 rounded-md" />
                     </td>
@@ -108,13 +95,10 @@ export default function Home({ all_apps }: { all_apps: AppType[] }) {
         ) : (
           <div
             className="relative overflow-x-hidden"
-            style={{ height: "60vh", justifyItems: "center" }}
+            style={{ height: '60vh', justifyItems: 'center' }}
           >
             <table className="mt-5 max-md:w-screen max-lg:w-5/6 max-xl:w-4/5 w-6/12 text-sm text-left bg-backgroundBlue">
-              <thead
-                className="text-xs text-cyan-600 sticky top-0 bg-white"
-                style={{ zIndex: 1 }}
-              >
+              <thead className="text-xs text-cyan-600 sticky top-0 bg-white" style={{ zIndex: 1 }}>
                 <tr>
                   <th className="px-6 py-3">Icoon</th>
                   <th className="px-6 py-3">Naam</th>
@@ -126,7 +110,7 @@ export default function Home({ all_apps }: { all_apps: AppType[] }) {
               </thead>
               <tbody className="text-blue-950 bg-backgroundBlue">
                 {all_apps.map((row) => {
-                  let icon = "";
+                  let icon = '';
                   const risks = [
                     row?.financial_risk,
                     row?.privacy_risk,
@@ -134,20 +118,15 @@ export default function Home({ all_apps }: { all_apps: AppType[] }) {
                     row?.system_risk,
                   ];
 
-                  const checkRiskRange = (
-                    risk: number,
-                    min: number,
-                    max: number
-                  ) => risk > min && risk <= max;
+                  const checkRiskRange = (risk: number, min: number, max: number) =>
+                    risk > min && risk <= max;
 
                   if (risks.some((risk) => checkRiskRange(risk!, 0.7, 1))) {
-                    icon = "/angry.svg";
-                  } else if (
-                    risks.some((risk) => checkRiskRange(risk!, 0.4, 0.7))
-                  ) {
-                    icon = "/middle.svg";
+                    icon = '/angry.svg';
+                  } else if (risks.some((risk) => checkRiskRange(risk!, 0.4, 0.7))) {
+                    icon = '/middle.svg';
                   } else if (risks.some((risk) => risk! < 0.4)) {
-                    icon = "/happy.svg";
+                    icon = '/happy.svg';
                   }
 
                   return (

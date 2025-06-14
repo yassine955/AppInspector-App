@@ -1,22 +1,22 @@
-import { useRouter } from "next/router";
-import { Fragment, useState } from "react";
-import { Button } from "flowbite-react";
-import { HiOutlineSearch } from "react-icons/hi";
+import { useRouter } from 'next/router';
+import { Fragment, useState } from 'react';
+import { Button } from 'flowbite-react';
+import { HiOutlineSearch } from 'react-icons/hi';
 
 export const SearchEngineComponent = () => {
   const { push } = useRouter();
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     state: false,
-    msg: "",
+    msg: '',
   });
 
   const handleSearch = async () => {
-    setError({ state: false, msg: "" });
+    setError({ state: false, msg: '' });
 
-    if (inputValue === "") {
-      setError({ state: true, msg: "Vul een app-naam in!" });
+    if (inputValue === '') {
+      setError({ state: true, msg: 'Vul een app-naam in!' });
       return;
     }
 
@@ -29,18 +29,18 @@ export const SearchEngineComponent = () => {
       if (look_for_app === true) {
         // Don’t set loading false — navigate while loading is true
         await push({
-          pathname: "/app/results",
+          pathname: '/app/results',
           query: { title: inputValue },
         });
       } else {
         setError({
           state: true,
-          msg: "Geen resultaat gevonden, probeer iets anders...",
+          msg: 'Geen resultaat gevonden, probeer iets anders...',
         });
         setLoading(false);
       }
     } catch (error) {
-      console.error("Error fetching search results:", error);
+      console.error('Error fetching search results:', error);
       setLoading(false); // Fallback in case of error
     }
   };
@@ -49,9 +49,9 @@ export const SearchEngineComponent = () => {
     <Fragment>
       <div
         style={{
-          justifyContent: "center",
-          marginTop: "10%",
-          justifyItems: "center !important",
+          justifyContent: 'center',
+          marginTop: '10%',
+          justifyItems: 'center !important',
         }}
       >
         <div className="sm:flex justify-center self-center justify-self-center">
@@ -61,7 +61,7 @@ export const SearchEngineComponent = () => {
             onChange={(e) => setInputValue(e.target.value)}
             id="default-input"
             style={{
-              width: "22rem",
+              width: '22rem',
             }}
             placeholder="Type de naam van de app"
             className=" placeholder-darkBlueText sm:mr-2 shadow-lg bg-gray-50 border border-gray-300 font-bold text-darkBlueText text-sm rounded-lg focus:ring-blue-200 focus:border-blue-200 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -106,7 +106,7 @@ export const SearchEngineComponent = () => {
           <div className="mt-5">
             <div
               style={{
-                justifySelf: "center !important",
+                justifySelf: 'center !important',
               }}
               className="animate-pulse transition-opacity duration-1000 p-4 text-sm text-red-800 rounded-lg bg-red-50 self-center justify-self-center"
               role="alert"

@@ -1,12 +1,12 @@
-import "dotenv";
-import { defineConfig } from "drizzle-kit";
+import 'dotenv';
+import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
-  schema: "./src/drizzle/schema",
-  out: "./src/drizzle/migrations",
-  dialect: "postgresql",
+  schema: './src/drizzle/schema',
+  out: './src/drizzle/migrations',
+  dialect: 'postgresql',
   dbCredentials: {
-    user: "postgres",
+    user: 'postgres',
     host: process.env.HOST!,
     database: process.env.DB!,
     password: process.env.PAS!,
