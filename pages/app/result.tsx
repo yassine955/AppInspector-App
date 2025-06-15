@@ -18,15 +18,15 @@ const RiskComponent = ({
   let middleOpacity = 0;
   let angryOpacity = 0;
 
-  if (riskValue < 0.35) {
+  if (riskValue < 0.4) {
     happyOpacity = 100;
     middleOpacity = 20;
     angryOpacity = 5;
-  } else if (riskValue >= 0.35 && riskValue <= 0.67) {
+  } else if (riskValue >= 0.4 && riskValue <= 0.7) {
     happyOpacity = 20;
     middleOpacity = 100;
     angryOpacity = 20;
-  } else if (riskValue > 0.67 && riskValue <= 1) {
+  } else if (riskValue > 0.7 && riskValue <= 1) {
     happyOpacity = 5;
     middleOpacity = 20;
     angryOpacity = 100;
