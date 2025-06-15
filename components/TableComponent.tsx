@@ -10,7 +10,7 @@ export function TableComponent({ all_apps }: { all_apps: AppType[] }) {
 
   return (
     <div className="w-full">
-      <div className="relative overflow-x-auto max-h-[600px] custom-scrollbar ">
+      <div className="relative overflow-x-auto max-h-[600px] custom-scrollbar fade-wrapper">
         <div className="min-w-full lg:max-w-[80vw] xl:max-w-[70vw] px-0 lg:px-0 custom-scrollbar ">
           <table className="rounded-3xl w-full lg:w-[70%] mx-auto text-sm text-left custom-scrollbar ">
             <thead className="sticky top-0 z-10 text-xs text-cyan-600 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-sm">
@@ -113,7 +113,7 @@ export function TableComponent({ all_apps }: { all_apps: AppType[] }) {
                     </td>
                     <td className="px-6 py-4 hidden md:table-cell">
                       <svg
-                        onClick={() => {
+                        onClick={(e) => {
                           e.preventDefault();
                           push({
                             pathname: `/app/result`,

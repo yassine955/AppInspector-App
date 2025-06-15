@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 
 const Article = () => {
   return (
-    <div className="flex justify-center py-6">
+    <div className="flex justify-center py-6 px-4">
       <article className="format lg:format-sm text-darkBlueText">
         <h3 className="text-darkBlueText">Over ons</h3>
         <p className="text-darkBlueText">
@@ -53,7 +53,7 @@ export default function AboutUs() {
 
   return (
     <Fragment>
-      <BodyComp results>
+      <BodyComp>
         <Article />
       </BodyComp>
     </Fragment>

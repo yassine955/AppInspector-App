@@ -34,19 +34,19 @@ export const BodyComp = ({ children }: { children: any }) => {
       {/* Scrollable content below navbar, above footer */}
       <main className="flex-grow overflow-y-auto pt-[140px]">{children}</main>
 
-      {/* <div
+      <div
         ref={bannerRef}
         id="bottom-banner"
-        className="fixed bottom-0 inset-x-0 z-50 w-full backdrop-blur-sm px-4 py-3 sm:px-8 sm:py-4 border-t "
+        className="fixed bottom-0 inset-x-0 z-50 w-full backdrop-blur-sm px-2 py-2 sm:px-8 sm:py-4 border-t"
       >
-        <div className="max-w-5xl mx-auto px-4">
-          <p className="text-xs sm:text-sm text-darkBlueText leading-relaxed">
+        <div className="max-w-5xl mx-auto px-2 sm:px-4">
+          <p className="text-[10px] lg:text-[13px] leading-snug text-darkBlueText">
             <strong>Disclaimer:</strong>
             <br />
             {description}
           </p>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
