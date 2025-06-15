@@ -33,12 +33,12 @@ const RiskComponent = ({
   }
 
   return (
-    <div className="flex mb-12 items-center">
-      <article className="font-bold text-blue-950 w-6/12">
+    <div className="flex flex-col md:flex-row mb-12 items-start md:items-center gap-4">
+      <article className="font-bold text-blue-950 w-full md:w-6/12 mb-4 md:mb-0">
         <h1 className="text-xl mb-2">{title}</h1>
         <p className="text-sm font-normal">{description}</p>
       </article>
-      <div className="flex w-6/12 justify-center">
+      <div className="flex w-full md:w-6/12 justify-center md:justify-end">
         <img className="mr-2" style={{ opacity: `${happyOpacity}%` }} src="/happy.svg" />
         <img className="mr-2" style={{ opacity: `${middleOpacity}%` }} src="/middle.svg" />
         <img style={{ opacity: `${angryOpacity}%` }} src="/angry.svg" />
@@ -93,7 +93,7 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
 
   return (
     <Fragment>
-      <BodyComp results>
+      <BodyComp>
         {loading ? (
           <div className="w-full flex justify-center py-8 animate-pulse">
             <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
@@ -121,7 +121,7 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
             </div>
           </div>
         ) : (
-          <div className="w-full flex justify-center py-8">
+          <div className="w-full flex justify-center py-8 sm:mb-24 lg:mb-0">
             <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
               <div className="mb-7 flex items-center">
                 {single_app?.id && (
@@ -154,14 +154,14 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
                 <article className="pl-4 text-xl font-bold text-blue-950">
                   <h1>{single_app?.title}</h1>
                   <h1>
-                    Versienummer:
-                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset ml-2">
+                    Versienummer:{' '}
+                    <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
                       {single_app?.version || 'Version unknown'}
                     </span>
                   </h1>
                   <h1>
-                    Genre:
-                    <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset ml-2">
+                    Genre:{' '}
+                    <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
                       {single_app?.genre || 'Genre unknown'}
                     </span>
                   </h1>

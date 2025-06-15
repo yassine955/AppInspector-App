@@ -1,6 +1,7 @@
 import { BodyComp } from '@/components/Body';
 import { SearchEngineComponent } from '@/components/SearchEngine';
 import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
@@ -16,7 +17,7 @@ export default function Home() {
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <BodyComp results={false}>
+      <BodyComp>
         <SearchEngineComponent />
       </BodyComp>
     </div>

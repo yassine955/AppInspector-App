@@ -1,4 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@plugin "flowbite-typography";
+
+/* WebKit Scrollbars (Chrome, Edge, Safari) */
+.custom-scrollbar::-webkit-scrollbar,
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 10px;
+  height: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+  background: #e1f5fe;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+  background: #055875;
+}
+
+/* Firefox Scrollbar fallback */
+@supports not selector(::-webkit-scrollbar) {
+  .custom-scrollbar,
+  body,
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #055875 #e1f5fe;
+  }
+}
