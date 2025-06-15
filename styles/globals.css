@@ -1,4 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@plugin "flowbite-typography";
+
+/* Small scrollbar size */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 3px; /* horizontal scrollbar */
+}
+
+/* Track (background) */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e1f5fe;
+}
+
+/* Thumb (draggable part) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #055875;
+}
+
+/* Firefox fallback */
+@supports not selector(::-webkit-scrollbar) {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #055875 #e1f5fe;
+  }
+}

@@ -9,20 +9,20 @@ export const NavbarComponent = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-sm">
-      {/* Logo */}
-      <div className="p-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm h-[140px] flex flex-col">
+      {/* Top part: Logo */}
+      <div className="flex-shrink-0 h-[80px] flex items-center px-4">
         <img
           onClick={() => push('/')}
-          className="w-48 sm:w-56 md:w-64 lg:w-72 cursor-pointer"
+          className="h-[50px] w-auto cursor-pointer"
           src="/logo-app.svg"
           alt="Logo"
         />
       </div>
 
-      {/* Navbar */}
-      <nav className="bg-[#0096c9] relative">
-        <div className="flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      {/* Bottom part: Navbar */}
+      <nav className="bg-[#0096c9] flex-shrink-0 h-[60px] relative flex items-center">
+        <div className="flex items-center justify-between w-full px-4 sm:px-6 lg:px-8">
           {/* Home */}
           <div className="hidden md:block">
             <Link href="/" className="text-white font-bold hover:text-gray-200">
@@ -61,7 +61,7 @@ export const NavbarComponent = () => {
           </div>
         </div>
 
-        {/* Altijd aanwezig dropdown — animatie werkt nu */}
+        {/* Mobile dropdown */}
         <div
           className={`md:hidden absolute left-0 right-0 top-full bg-[#0096c9] px-4 pt-4 pb-4 space-y-2 transform transition-all duration-300 ease-in-out z-40 ${
             menuOpen
