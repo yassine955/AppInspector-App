@@ -18,11 +18,11 @@ const RiskComponent = ({
   let middleOpacity = 0;
   let angryOpacity = 0;
 
-  if (riskValue < 0.4) {
+  if (riskValue < 0.47) {
     happyOpacity = 100;
     middleOpacity = 20;
     angryOpacity = 5;
-  } else if (riskValue >= 0.4 && riskValue <= 0.7) {
+  } else if (riskValue >= 0.47 && riskValue <= 0.7) {
     happyOpacity = 20;
     middleOpacity = 100;
     angryOpacity = 20;
@@ -121,8 +121,8 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
             </div>
           </div>
         ) : (
-          <div className="w-full flex justify-center py-8 sm:mb-24 lg:mb-0">
-            <div className="w-7/12 max-xl:w-10/12 max-lg:w-11/12">
+          <div className="w-full px-[5%] lg:px-[20%] py-8 sm:mb-24 lg:mb-0">
+            <div className="">
               <div className="mb-7 flex items-center">
                 {single_app?.id && (
                   <div className="relative w-16 h-16">
@@ -155,14 +155,14 @@ export default function SingleResult({ single_app }: { single_app: AppType }) {
                   <h1>{single_app?.title}</h1>
                   <h1>
                     Versienummer:{' '}
-                    <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
+                    <span className="bg-blue-100 text-[#172554] text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
                       {single_app?.version || 'Version unknown'}
                     </span>
                   </h1>
                   <h1>
-                    Genre:{' '}
-                    <span className="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
-                      {single_app?.genre || 'Genre unknown'}
+                    Categorie:{' '}
+                    <span className="bg-blue-100 text-[#172554] text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300">
+                      {single_app?.genre || 'Categorie onbekend'}
                     </span>
                   </h1>
                 </article>
