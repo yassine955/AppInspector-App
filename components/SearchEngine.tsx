@@ -53,6 +53,12 @@ export const SearchEngineComponent = () => {
         <div className="w-full max-w-sm sm:max-w-md sm:flex sm:items-center sm:justify-center gap-2">
           <input
             value={inputValue}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSearch();
+              }
+            }}
             autoFocus
             type="text"
             onChange={(e) => setInputValue(e.target.value)}

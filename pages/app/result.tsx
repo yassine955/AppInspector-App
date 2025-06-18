@@ -39,9 +39,9 @@ const RiskComponent = ({
         <p className="text-sm font-normal">{description}</p>
       </article>
       <div className="flex w-full md:w-6/12 justify-center md:justify-end">
-        <img className="mr-2" style={{ opacity: `${happyOpacity}%` }} src="/happy.svg" />
-        <img className="mr-2" style={{ opacity: `${middleOpacity}%` }} src="/middle.svg" />
         <img style={{ opacity: `${angryOpacity}%` }} src="/angry.svg" />
+        <img className="mr-2" style={{ opacity: `${middleOpacity}%` }} src="/middle.svg" />
+        <img className="mr-2" style={{ opacity: `${happyOpacity}%` }} src="/happy.svg" />
       </div>
     </div>
   );
